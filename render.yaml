@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tg-broker-bot-webhook
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python broker_bot.py"
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: WEBHOOK_BASE
+        sync: false
+      - key: WEBHOOK_PATH
+        value: tg-webhook
+      - key: WEBHOOK_SECRET
+        generateValue: true
+      - key: USE_POLLING
+        value: "0"
